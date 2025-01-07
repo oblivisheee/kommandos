@@ -1,0 +1,9 @@
+[package]
+name = "device"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+metal = "0.30.0"
+candle-core.workspace = true
+thiserror.workspace = true

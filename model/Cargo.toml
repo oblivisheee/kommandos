@@ -1,0 +1,49 @@
+[package]
+name = "model"
+authors.workspace = true
+license-file.workspace = true
+readme.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+candle-core.workspace = true
+candle-onnx.workspace = true
+candle-transformers.workspace = true
+candle-nn.workspace = true
+safetensors = "0.4.5"
+thiserror.workspace = true
+[target.'cfg(target_os = "windows")'.dependencies]
+candle-transformers = { workspace = true, features = [
+    "accelerate",
+    "cuda",
+    "flash-attn",
+    "mkl",
+] }
+candle-nn = { workspace = true, features = ["accelerate", "cuda", "mkl"] }
+candle-core = { version = "0.8.1", features = [
+    "accelerate",
+    "cuda",
+    "cudarc",
+    "mkl",
+] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+candle-transformers = { workspace = true, features = ["accelerate", "metal"] }
+candle-nn = { workspace = true, features = ["accelerate", "metal"] }
+candle-core = { version = "0.8.1", features = ["accelerate", "metal"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+candle-transformers = { workspace = true, features = [
+    "accelerate",
+    "cuda",
+    "flash-attn",
+    "mkl",
+] }
+candle-nn = { workspace = true, features = ["accelerate", "cuda", "mkl"] }
+candle-core = { workspace = true, features = [
+    "accelerate",
+    "cuda",
+    "cudarc",
+    "mkl",
+] }
